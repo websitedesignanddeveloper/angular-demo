@@ -1,0 +1,36 @@
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="currentUser!=null">
+        <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                   <div class="d-flex justify-content-center justify-content-around">
+                    <img src="assets/defaultImg.png" class="userImage mt-2"> 
+                    <span class="userName mt-2 ml-1">{{currentUser?.first_name}}</span> 
+                   </div> 
+                
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <div class="sidenav bg-dark" *ngIf="currentUser!=null">
+        <div class="flex-row justify-content-center">
+            <div class="align-middle">
+                <img src="assets/logo.jpg" class="userImg rounded mx-auto d-block">
+            </div>
+
+        </div>
+        <div class="mt-4">
+            <a [routerLink]="['/dashboard']" [routerLinkActiveOptions]="{ exact: true }">Dashoboard</a>
+            <a *ngIf="currentUser?.role == 'Admin'" [routerLink]="['/admin-section']" [routerLinkActiveOptions]="{ exact: true }">Admin Section</a>
+            <a (click)="logout()">Logout</a>
+        </div>
+    </div>
+<!-- Page content -->
+<div [class.main]="currentUser!=null">
+    <router-outlet></router-outlet>
+</div>

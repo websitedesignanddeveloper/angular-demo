@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h2 class="p-3">Assest List</h2>
+ 
+  <table datatable [dtOptions]="dtUserOptions" class="table table-striped assestTable"
+    *ngIf="assestList.length!=0">
+    <thead  class="bg-light">
+      <tr class="text-center">
+        <th>#</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Graphical View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of assestList; let i = index" class="text-center">
+        <td>{{user.id}}</td>
+        <td>
+          <img src="{{user.image_url}}">
+        </td>
+        <td>{{user.name}}</td>
+        <td>
+          <button type="button" class="btn btn-primary"  (click)="routeToChart(user.id)" >View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
